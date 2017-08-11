@@ -18,5 +18,5 @@ def start_ticket(ticket_id, ticket_store, branch_store):
     if ticket is None:
         raise NotFoundError('ticket', ticket_id)
 
-    branch = Branch(ticket.get_branch_name())
+    branch = Branch(ticket.branch_name)
     branch_store.create(branch)
