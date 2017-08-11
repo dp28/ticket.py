@@ -1,12 +1,15 @@
 import click
 
+
 @click.group()
-def ticket():
+def cli():
     pass
 
-@ticket.command()
+
+@cli.command()
 def run():
     click.echo('Hello, ticket')
 
+
 if __name__ == '__main__':
-    ticket()
+    cli()
