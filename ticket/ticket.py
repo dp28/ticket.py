@@ -34,4 +34,4 @@ class Ticket():
 
     def _build_sanitized_title(self):
         no_symbols = sub(r'[^\w\s\-_]+', '', self.title)
-        return sub(r'\s+', SEPARATOR, no_symbols)
+        return sub(r'\s+', SEPARATOR, no_symbols).lower()

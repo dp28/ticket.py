@@ -63,4 +63,9 @@ class TicketTest(TestCase):
         name_end = ticket.branch_name.replace('PT1234-', '')
         self.assertEqual('bla-bla', name_end)
 
+    def test_branch_name_uses_downcased_title(self):
+        ticket = Ticket('1234', 'BlA  bLa')
+        name_end = ticket.branch_name.replace('PT1234-', '')
+        self.assertEqual('bla-bla', name_end)
+
 
