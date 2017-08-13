@@ -68,4 +68,18 @@ class TicketTest(TestCase):
         name_end = ticket.branch_name.replace('PT1234-', '')
         self.assertEqual('bla-bla', name_end)
 
+    def test_save_changes_state_to_started_if_was_unstarted(self):
+        ticket = Ticket(state='unstarted')
+        ticket.start()
+        self.assertEqual('started', ticket.state)
+
+    def test_save_changes_state_to_started_if_was_rejected(self):
+        ticket = Ticket(state='rejected')
+        ticket.start()
+        self.assertEqual('started', ticket.state)
+
+    def test_save_does_not_change_state_finished(self):
+        ticket = Ticket(state='finished')
+        ticket.start()
+        self.assertEqual('finished', ticket.state)
 

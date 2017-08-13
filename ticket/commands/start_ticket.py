@@ -15,3 +15,6 @@ def start_ticket(ticket_id, ticket_store):
         raise NotFoundError('ticket', ticket_id)
 
     branch = branch_factory.create_branch(ticket.branch_name)
+    ticket.start()
+    ticket_store.save(ticket)
+
