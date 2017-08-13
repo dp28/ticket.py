@@ -1,9 +1,9 @@
 import pytest
-import os
 from unittest.mock import patch
 
 from ticket.config_loader import fetch, ConfigValueMissingException
 from ticket import config_loader
+
 
 @patch('os.getenv', return_value='env')
 def test_fetch_tries_environment_variables_prefixed_with_ticket(getenv):
@@ -21,7 +21,7 @@ def test_fetch_tries_home_dir_config_file(open, load):
 
 @patch('builtins.open', create=True, side_effect=FileNotFoundError())
 def test_does_not_require_config_file_to_exist(open):
-    assert fetch('B') == None
+    assert fetch('B') is None
 
 
 @patch('builtins.open', create=True, side_effect=FileNotFoundError())
@@ -31,11 +31,10 @@ def test_uses_the_default_if_no_value_is_found(open):
 
 @patch('builtins.open', create=True, side_effect=FileNotFoundError())
 def test_returns_none_if_no_value_or_default_is_found_and_required_is_false(open):
-    assert fetch('B') == None
+    assert fetch('B') is None
 
 
 @patch('builtins.open', create=True, side_effect=FileNotFoundError())
 def test_raises_if_no_value_or_default_is_found_and_required_is_true(open):
     with pytest.raises(ConfigValueMissingException):
         fetch('B', required=True)
-

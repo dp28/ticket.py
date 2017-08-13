@@ -1,5 +1,6 @@
 import sys
 
+
 def show(text):
     print(text)
 

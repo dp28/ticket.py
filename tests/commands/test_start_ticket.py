@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import Mock, patch
 from unittest import TestCase
 
@@ -35,4 +34,3 @@ class StartTicketTest(TestCase):
         start_ticket('id', mock_ticket_store)
         self.assertEqual(1, mock_ticket.start.call_count)
         mock_ticket_store.save.assert_called_with(mock_ticket)
-

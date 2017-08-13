@@ -1,5 +1,3 @@
-import pytest
-from unittest.mock import patch
 from unittest import TestCase
 
 from ticket.ticket import Ticket
@@ -82,4 +80,3 @@ class TicketTest(TestCase):
         ticket = Ticket(state='finished')
         ticket.start()
         self.assertEqual('finished', ticket.state)
-

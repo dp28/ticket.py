@@ -5,6 +5,7 @@ from subprocess import CalledProcessError
 from ticket.cli import command_runner
 from ticket.cli.command_runner import CommandNotFoundError, CommandFailedError
 
+
 @patch('subprocess.check_output')
 def test_run_delegates_to_shell(check_output):
     command_runner.run('ls -l -a')
@@ -29,8 +30,7 @@ def test_run_raises_an_exception_if_the_command_does_not_exist(check_output):
         command_runner.run('asdfg')
 
 
-@patch('subprocess.check_output', side_effect=CalledProcessError(2, ['git', 'completelyUnknownCommand']))
+@patch('subprocess.check_output', side_effect=CalledProcessError(2, ['git', 'unknownCommand']))
 def test_run_raises_an_exception_if_the_command_fails(check_output):
     with pytest.raises(CommandFailedError):
-        command_runner.run('git completelyUnknownCommand')
-
+        command_runner.run('git unknownCommand')

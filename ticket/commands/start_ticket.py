@@ -1,6 +1,7 @@
 from ticket.git import branch_factory
 from ticket.errors import TicketError
 
+
 class NotFoundError(TicketError):
 
     def __init__(self, entity_type, id):
@@ -14,7 +15,6 @@ def start_ticket(ticket_id, ticket_store):
     if ticket is None:
         raise NotFoundError('ticket', ticket_id)
 
-    branch = branch_factory.create_branch(ticket.branch_name)
+    branch_factory.create_branch(ticket.branch_name)
     ticket.start()
     ticket_store.save(ticket)
-

@@ -1,6 +1,7 @@
 from re import sub
 from ticket.config import BRANCH_PART_SEPARATOR, BRANCH_NAME_PREFIX
 
+
 class Ticket():
 
     def __init__(self, id=None, title=None, body=None, url=None, state='unstarted'):

@@ -28,5 +28,3 @@ class CommandFailedError(TicketError):
         super(CommandFailedError, self).__init__(
             '"{command}" failed: {reason}'.format(command=command, reason=reason)
         )
-
-
