@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 from unittest import TestCase
 
 from src.commands.start_ticket import start_ticket, NotFoundError
@@ -12,17 +12,16 @@ class StartTicketTest(TestCase):
         mock_ticket_store = Mock()
         mock_ticket_store.get_by_id.return_value = None
         with self.assertRaises(NotFoundError):
-            start_ticket('id', mock_ticket_store, Mock())
+            start_ticket('id', mock_ticket_store)
 
-    def test_branch_is_created_with_ticket_branch_name(self):
+    @patch('src.git.branch_factory.create_branch')
+    def test_branch_is_created_with_ticket_branch_name(self, create_branch):
         mock_ticket = Mock(Ticket)
         mock_ticket_store = Mock()
-        mock_branch_store = Mock()
         mock_ticket.branch_name = 'something'
         mock_ticket_store.get_by_id.return_value = mock_ticket
 
-        start_ticket('id', mock_ticket_store, mock_branch_store)
+        start_ticket('id', mock_ticket_store)
 
-        branch_arg = mock_branch_store.create.call_args[0][0]
-        self.assertEqual('something', branch_arg.name)
+        create_branch.assert_called_with('something')
 

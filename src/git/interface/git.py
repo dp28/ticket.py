@@ -1,5 +1,5 @@
 from src.cli import command_runner
 
 
-def git(subcommand):
+def run(subcommand):
     return command_runner.run('git ' + subcommand)

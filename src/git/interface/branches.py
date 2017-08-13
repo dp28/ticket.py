@@ -1,13 +1,13 @@
-from src.git.interface.git import git
+from src.git.interface import git
 
 def get_current_branch():
-    return git('symbolic-ref --short HEAD')
+    return git.run('symbolic-ref --short HEAD')
 
 def get_local_branches():
-    return _parse_list(git('branch'))
+    return _parse_list(git.run('branch'))
 
 def get_remote_branches():
-    return _parse_list(git('branch --remote'))
+    return _parse_list(git.run('branch --remote'))
 
 def _parse_list(list_string):
     print(list_string)

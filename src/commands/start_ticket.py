@@ -1,4 +1,4 @@
-from src.git.branch import Branch
+from src.git import branch_factory
 from src.errors import TicketError
 
 class NotFoundError(TicketError):
@@ -9,10 +9,9 @@ class NotFoundError(TicketError):
         )
 
 
-def start_ticket(ticket_id, ticket_store, branch_store):
+def start_ticket(ticket_id, ticket_store):
     ticket = ticket_store.get_by_id(ticket_id)
     if ticket is None:
         raise NotFoundError('ticket', ticket_id)
 
-    branch = Branch(ticket.branch_name)
-    branch_store.create(branch)
+    branch = branch_factory.create_branch(ticket.branch_name)
