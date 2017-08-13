@@ -6,9 +6,11 @@ SEPARATOR = '-'
 
 class Ticket():
 
-    def __init__(self, id, title):
+    def __init__(self, id=None, title=None, body=None, url=None):
         self.__id = id
         self.__title = title
+        self.__body = body
+        self.__url = url
 
     @property
     def id(self):
@@ -17,6 +19,14 @@ class Ticket():
     @property
     def title(self):
         return self.__title
+
+    @property
+    def body(self):
+        return self.__body
+
+    @property
+    def url(self):
+        return self.__url
 
     @property
     def branch_name(self):

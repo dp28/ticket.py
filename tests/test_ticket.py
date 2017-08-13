@@ -8,12 +8,20 @@ from src.ticket import Ticket
 class TicketTest(TestCase):
 
     def test_creation_sets_id(self):
-        ticket = Ticket('some_id', 'a title')
+        ticket = Ticket(id='some_id', title='a title', body='a body', url='a url')
         self.assertEqual('some_id', ticket.id)
 
     def test_creation_sets_title(self):
-        ticket = Ticket('some_id', 'a title')
+        ticket = Ticket(id='some_id', title='a title', body='a body', url='a url')
         self.assertEqual('a title', ticket.title)
+
+    def test_creation_sets_body(self):
+        ticket = Ticket(id='some_id', title='a title', body='a body', url='a url')
+        self.assertEqual('a body', ticket.body)
+
+    def test_creation_sets_url(self):
+        ticket = Ticket(id='some_id', title='a title', body='a body', url='a url')
+        self.assertEqual('a url', ticket.url)
 
     def test_branch_name_starts_with_prefix_and_id(self):
         ticket = Ticket('1234', 'bla')
