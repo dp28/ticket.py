@@ -1,9 +1,5 @@
 from src.git.branch import Branch
-
-
-class TicketError(Exception):
-    pass
-
+from src.errors import TicketError
 
 class NotFoundError(TicketError):
 
