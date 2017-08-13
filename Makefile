@@ -3,3 +3,6 @@
 
 run:
 	.virtualenv/bin/python src/ticket.py
+
+test:
+	.virtualenv/bin/pytest .
