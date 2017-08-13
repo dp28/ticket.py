@@ -1,8 +1,5 @@
 from re import sub
-
-
-BRANCH_NAME_PREFIX = 'PT'
-SEPARATOR = '-'
+from ticket.config import BRANCH_PART_SEPARATOR, BRANCH_NAME_PREFIX
 
 class Ticket():
 
@@ -35,7 +32,7 @@ class Ticket():
 
     @property
     def branch_name(self):
-        return BRANCH_NAME_PREFIX + self.id + SEPARATOR + self._build_sanitized_title()
+        return BRANCH_NAME_PREFIX + self.id + BRANCH_PART_SEPARATOR + self._build_sanitized_title()
 
     def start(self):
         if self.state == 'unstarted' or self.state == 'rejected':
@@ -43,4 +40,4 @@ class Ticket():
 
     def _build_sanitized_title(self):
         no_symbols = sub(r'[^\w\s\-_]+', '', self.title)
-        return sub(r'\s+', SEPARATOR, no_symbols).lower()
+        return sub(r'\s+', BRANCH_PART_SEPARATOR, no_symbols).lower()
