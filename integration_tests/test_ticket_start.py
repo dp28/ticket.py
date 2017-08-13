@@ -1,6 +1,6 @@
 import pytest
 from click.testing import CliRunner
-from src.cli import cli
+from src.cli.app import app
 
 
 @pytest.fixture
@@ -9,10 +9,10 @@ def runner():
 
 
 def test_start_fails_without_an_argument(runner):
-    result = runner.invoke(cli, ["start"])
+    result = runner.invoke(app, ["start"])
     assert result.exit_code != 0
 
 
 def test_start_fails_with_an_invalid_ticket_number(runner):
-    result = runner.invoke(cli, ["start", "bla"])
+    result = runner.invoke(app, ["start", "bla"])
     assert result.exit_code != 0

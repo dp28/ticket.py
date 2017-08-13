@@ -1,6 +1,6 @@
 import pytest
 from click.testing import CliRunner
-from src.cli import cli
+from src.cli.app import app
 
 
 @pytest.fixture
@@ -9,7 +9,7 @@ def runner():
 
 
 def test_ticket(runner):
-    result = runner.invoke(cli, ["run"])
+    result = runner.invoke(app, ["run"])
     assert result.exit_code == 0
     assert not result.exception
     assert result.output.strip() == 'Hello, ticket'
