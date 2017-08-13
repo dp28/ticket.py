@@ -2,7 +2,7 @@ import pytest
 from unittest.mock import patch
 from unittest import TestCase
 
-from src.ticket import Ticket
+from ticket.ticket import Ticket
 
 
 class TicketTest(TestCase):

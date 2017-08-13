@@ -1,6 +1,6 @@
-from src.git.interface import git
-from src.git.branch import Branch
-from src.config import BRANCH_POINT
+from ticket.git.interface import git
+from ticket.git.branch import Branch
+from ticket.config import BRANCH_POINT
 
 
 def create_branch(branch_name):

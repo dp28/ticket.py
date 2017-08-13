@@ -1,8 +1,8 @@
 import pytest
 from unittest.mock import patch, Mock
 
-from src.pivotal import ticket_store
-from src import config
+from ticket.pivotal import ticket_store
+from ticket import config
 
 
 @patch('requests.get')

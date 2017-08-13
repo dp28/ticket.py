@@ -1,6 +1,6 @@
 import subprocess
-from src.cli import output
-from src.errors import TicketError
+from ticket.cli import output
+from ticket.errors import TicketError
 
 
 def run(command):

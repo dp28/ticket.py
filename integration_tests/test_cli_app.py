@@ -1,6 +1,6 @@
 import pytest
 from click.testing import CliRunner
-from src.cli.app import app
+from ticket.cli.app import app
 
 
 @pytest.fixture

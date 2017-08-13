@@ -1,5 +1,5 @@
-from src.git import branch_factory
-from src.errors import TicketError
+from ticket.git import branch_factory
+from ticket.errors import TicketError
 
 class NotFoundError(TicketError):
 

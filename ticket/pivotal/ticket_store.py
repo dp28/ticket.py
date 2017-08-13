@@ -1,6 +1,6 @@
 import requests
-from src import config
-from src.ticket import Ticket
+from ticket import config
+from ticket.ticket import Ticket
 
 
 def get_by_id(id):

@@ -1,4 +1,4 @@
-from src.cli import command_runner
+from ticket.cli import command_runner
 
 
 def run(subcommand):

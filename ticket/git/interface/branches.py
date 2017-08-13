@@ -1,4 +1,4 @@
-from src.git.interface import git
+from ticket.git.interface import git
 
 def get_current_branch():
     return git.run('symbolic-ref --short HEAD')

@@ -18,7 +18,7 @@ setup(
     install_requires=dependencies,
     entry_points={
         'console_scripts': [
-            'ticket = src.ticket:ticket',
+            'ticket = ticket.cli.app:app',
         ],
     },
 )

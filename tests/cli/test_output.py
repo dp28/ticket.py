@@ -1,6 +1,6 @@
 import pytest
 
-from src.cli import output
+from ticket.cli import output
 
 
 def test_show_prints_to_stdout(capsys):

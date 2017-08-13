@@ -1,6 +1,6 @@
 import click
-from src.commands.start_ticket import start_ticket
-from src.pivotal import ticket_store
+from ticket.commands.start_ticket import start_ticket
+from ticket.pivotal import ticket_store
 
 
 @click.group()
@@ -14,7 +14,7 @@ def run():
 
 
 @app.command()
-@app.argument('ticket_id')
+@click.argument('ticket_id')
 def start(ticket_id):
     start_ticket(ticket_id, ticket_store)
 

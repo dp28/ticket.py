@@ -2,8 +2,8 @@ import pytest
 from unittest.mock import patch
 from subprocess import CalledProcessError
 
-from src.cli import command_runner
-from src.cli.command_runner import CommandNotFoundError, CommandFailedError
+from ticket.cli import command_runner
+from ticket.cli.command_runner import CommandNotFoundError, CommandFailedError
 
 @patch('subprocess.check_output')
 def test_run_delegates_to_shell(check_output):
@@ -17,7 +17,7 @@ def test_run_returns_command_output_without_trailing_newline(check_output):
 
 
 @patch('subprocess.check_output')
-@patch('src.cli.output.show')
+@patch('ticket.cli.output.show')
 def test_run_prints_the_command_to_run(show, check_output):
     command_runner.run('ls')
     show.assert_called_with('ls')
