@@ -3,7 +3,7 @@ import os
 from unittest.mock import patch
 
 from ticket.config_loader import fetch, ConfigValueMissingException
-
+from ticket import config_loader
 
 @patch('os.getenv', return_value='env')
 def test_fetch_tries_environment_variables_prefixed_with_ticket(getenv):
@@ -14,9 +14,9 @@ def test_fetch_tries_environment_variables_prefixed_with_ticket(getenv):
 @patch('json.load', return_value={'B': 'json'})
 @patch('builtins.open', create=True)
 def test_fetch_tries_home_dir_config_file(open, load):
+    config_loader.CUSTOM_CONFIG_PATH = '/home/user/.ticket.json'
     assert fetch('B') == 'json'
-    home_dir = os.getenv('HOME')
-    open.assert_called_with('{}/.ticket.json'.format(home_dir))
+    open.assert_called_with('/home/user/.ticket.json')
 
 
 @patch('builtins.open', create=True, side_effect=FileNotFoundError())
