@@ -24,3 +24,4 @@ Config variables can be set in `~/.ticket.json` or as environment variables with
 
 * `PIVOTAL_API_KEY` - Your API token for Pivotal
 * `PIVOTAL_PROJECT_ID` - The id of the Pivotal project to interface with
+* `GITHUB_API_KEY` - Your GitHub API token. It needs to have the repo and user permissions: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/

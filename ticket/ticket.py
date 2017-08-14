@@ -39,6 +39,9 @@ class Ticket():
         if self.state == 'unstarted' or self.state == 'rejected':
             self.__state = 'started'
 
+    def add_pull_request(self, pull_request):
+        pass
+
     def _build_sanitized_title(self):
         no_symbols = sub(r'[^\w\s\-_]+', '', self.title)
         return sub(r'\s+', BRANCH_PART_SEPARATOR, no_symbols).lower()
