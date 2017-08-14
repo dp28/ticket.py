@@ -1,5 +1,6 @@
 from re import sub
 from ticket.config import BRANCH_PART_SEPARATOR, BRANCH_NAME_PREFIX
+from ticket.git.branch import Branch
 
 
 class Ticket():
@@ -30,6 +31,10 @@ class Ticket():
     @property
     def state(self):
         return self.__state
+
+    @property
+    def branch(self):
+        return Branch(self.branch_name)
 
     @property
     def branch_name(self):

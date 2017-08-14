@@ -5,6 +5,7 @@ from ticket.commands.start_ticket import start_ticket, NotFoundError
 from ticket.ticket import Ticket
 from ticket.pivotal import ticket_store
 from ticket.git.branch import Branch
+from ticket.git.repos import Repo
 
 
 class StartTicketTest(TestCase):
@@ -41,7 +42,7 @@ class StartTicketTest(TestCase):
     @patch('ticket.git.repos.get_current')
     def test_pull_request_is_created_from_new_branch(self, get_current_repo, create_branch):
         mock_branch = Mock(Branch)
-        mock_repo = Mock()
+        mock_repo = Mock(Repo)
         get_current_repo.return_value = mock_repo
         create_branch.return_value = mock_branch
         mock_pull_factory = Mock()
