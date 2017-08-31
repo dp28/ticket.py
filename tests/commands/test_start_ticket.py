@@ -16,18 +16,18 @@ class StartTicketTest(TestCase):
         with self.assertRaises(NotFoundError):
             start_ticket('id', mock_ticket_store, Mock(), Mock())
 
-    @patch('ticket.git.branch_factory.create_branch')
+    @patch('ticket.git.branch_store.create_branch')
     def test_branch_is_created_with_ticket_branch_name(self, create_branch):
         mock_ticket = Mock(Ticket)
         mock_ticket_store = Mock()
-        mock_ticket.branch_name = 'something'
+        mock_ticket.branch = Mock(name='something')
         mock_ticket_store.get_by_id.return_value = mock_ticket
 
         start_ticket('id', mock_ticket_store, Mock(), Mock())
 
-        create_branch.assert_called_with('something')
+        create_branch.assert_called_with(mock_ticket.branch)
 
-    @patch('ticket.git.branch_factory.create_branch')
+    @patch('ticket.git.branch_store.create_branch')
     def test_ticket_is_started_if_was_unstarted(self, create_branch):
         mock_ticket = Mock(Ticket)
         mock_ticket_store = Mock(ticket_store)
@@ -38,7 +38,7 @@ class StartTicketTest(TestCase):
         mock_ticket_store.save.assert_called_with(mock_ticket)
 
 
-    @patch('ticket.git.branch_factory.create_branch')
+    @patch('ticket.git.branch_store.create_branch')
     @patch('ticket.git.repos.get_current')
     def test_pull_request_is_created_from_new_branch(self, get_current_repo, create_branch):
         mock_branch = Mock(Branch)
@@ -50,7 +50,7 @@ class StartTicketTest(TestCase):
         start_ticket('id', Mock(), mock_pull_factory, Mock())
         mock_pull_factory.create_pull_request.assert_called_with(mock_branch, mock_repo)
 
-    @patch('ticket.git.branch_factory.create_branch')
+    @patch('ticket.git.branch_store.create_branch')
     def test_pull_request_is_added_to_ticket(self, create_branch):
         mock_ticket = Mock(Ticket)
         mock_ticket_store = Mock(ticket_store)
@@ -62,7 +62,7 @@ class StartTicketTest(TestCase):
         start_ticket('id', mock_ticket_store, mock_pull_factory, Mock())
         mock_ticket.add_pull_request.assert_called_with(mock_pull)
 
-    @patch('ticket.git.branch_factory.create_branch')
+    @patch('ticket.git.branch_store.create_branch')
     def test_pull_request_is_saved(self, create_branch):
         mock_pull = Mock()
         mock_pull_factory = Mock()

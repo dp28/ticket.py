@@ -1,4 +1,4 @@
-from ticket.git import branch_factory
+from ticket.git import branch_store
 from ticket.git import repos
 from ticket.errors import TicketError
 
@@ -17,7 +17,7 @@ def start_ticket(ticket_id, ticket_store, pull_request_factory, pull_store):
         raise NotFoundError('ticket', ticket_id)
 
     repo = repos.get_current()
-    branch = branch_factory.create_branch(ticket.branch_name)
+    branch = branch_store.create_branch(ticket.branch)
     pull_request = pull_request_factory.create_pull_request(branch, repo)
     ticket.start()
     ticket.add_pull_request(pull_request)

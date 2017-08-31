@@ -34,11 +34,7 @@ class Ticket():
 
     @property
     def branch(self):
-        return Branch(self.branch_name)
-
-    @property
-    def branch_name(self):
-        return BRANCH_NAME_PREFIX + self.id + BRANCH_PART_SEPARATOR + self._build_sanitized_title()
+        return Branch(self._build_branch_name())
 
     def start(self):
         if self.state == 'unstarted' or self.state == 'rejected':
@@ -46,6 +42,9 @@ class Ticket():
 
     def add_pull_request(self, pull_request):
         pass
+
+    def _build_branch_name(self):
+        return BRANCH_NAME_PREFIX + self.id + BRANCH_PART_SEPARATOR + self._build_sanitized_title()
 
     def _build_sanitized_title(self):
         no_symbols = sub(r'[^\w\s\-_]+', '', self.title)
