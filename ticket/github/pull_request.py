@@ -5,12 +5,21 @@ from ticket.git.branch import Branch
 
 class PullRequest():
 
-    def __init__(self, ticket):
+    def __init__(self, ticket, repo):
         self.__ticket = ticket
+        self.__repo = repo
+
+    @property
+    def ticket(self):
+        return self.__ticket
+
+    @property
+    def repo(self):
+        return self.__repo
 
     @property
     def head_branch(self):
-        return self.__ticket.branch
+        return self.ticket.branch
 
     @property
     def base_branch(self):

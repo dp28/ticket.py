@@ -18,7 +18,7 @@ def start_ticket(ticket_id, ticket_store, pull_request_factory, pull_store):
 
     repo = repos.get_current()
     branch = branch_store.create_branch(ticket.branch)
-    pull_request = pull_request_factory.create_pull_request(branch, repo)
+    pull_request = pull_request_factory.create_pull_request(ticket, repo)
     ticket.start()
     ticket.add_pull_request(pull_request)
     pull_store.save(pull_request)
