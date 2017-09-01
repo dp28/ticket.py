@@ -5,6 +5,8 @@ from ticket.git.branch import Branch
 
 class PullRequest():
 
+    url = None
+
     def __init__(self, ticket, repo):
         self.__ticket = ticket
         self.__repo = repo
@@ -34,7 +36,7 @@ class PullRequest():
         return _humanize(self._get_head_branch_without_ticket_id())
 
     def _get_head_branch_without_ticket_id(self):
-        branch_name = self.head_branch.name
+        branch_name = str(self.head_branch.name)
 
         try:
             branch_prefix_end = branch_name.index(config.BRANCH_PART_SEPARATOR) + 1
