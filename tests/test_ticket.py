@@ -1,4 +1,5 @@
 from unittest import TestCase
+from unittest.mock import Mock
 
 from ticket.ticket import Ticket
 
@@ -80,3 +81,15 @@ class TicketTest(TestCase):
         ticket = Ticket(state='finished')
         ticket.start()
         self.assertEqual('finished', ticket.state)
+
+    def test_add_pull_request_puts_pull_request_url_in_body(self):
+        ticket = Ticket(body=None)
+        mock_pull = Mock(url='http://a.b.c')
+        ticket.add_pull_request(mock_pull)
+        self.assertEqual(ticket.body, '\n# Pull Requests\nhttp://a.b.c')
+
+    def test_add_pull_request_appends_pull_request_url_to_body_if_body_exists(self):
+        ticket = Ticket(body='Bla bla bla\nbla')
+        mock_pull = Mock(url='http://a.b.c')
+        ticket.add_pull_request(mock_pull)
+        self.assertEqual(ticket.body, 'Bla bla bla\nbla\n# Pull Requests\nhttp://a.b.c')

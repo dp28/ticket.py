@@ -8,7 +8,7 @@ class Ticket():
     def __init__(self, id=None, title=None, body=None, url=None, state='unstarted'):
         self.__id = id
         self.__title = title
-        self.__body = body
+        self.__body = body or ''
         self.__url = url
         self.__state = state
 
@@ -41,7 +41,7 @@ class Ticket():
             self.__state = 'started'
 
     def add_pull_request(self, pull_request):
-        pass
+        self.__body += '\n# Pull Requests\n{}'.format(pull_request.url)
 
     def _build_branch_name(self):
         return BRANCH_NAME_PREFIX + self.id + BRANCH_PART_SEPARATOR + self._build_sanitized_title()
