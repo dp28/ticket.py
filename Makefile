@@ -24,6 +24,10 @@ install:
 	@echo "\n\nAdded an alias to this installation to ~/.bashrc"
 	@echo "If this doesn't work, please try adding it to your own shell config file"
 
+update:
+	rm -rf install
+	make install
+
 test_watch:
 	-make test_and_notify
 	@echo "Watching current directory for changes ..."
