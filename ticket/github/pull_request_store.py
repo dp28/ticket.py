@@ -9,17 +9,15 @@ def save(pull_request):
         head=pull_request.head_branch.name,
         base=pull_request.base_branch.name
     ))
-    print(response)
     pull_request.url = response.get('url')
 
 
 def _post(repo, data):
     url = _build_url(repo.name)
     headers = _build_headers()
-    response = requests.post(url, data=data, headers=headers)
-    response.raise_for_status()
-    print(response)
+    response = requests.post(url, json=data, headers=headers)
     print(response.json())
+    response.raise_for_status()
     return response.json()
 
 

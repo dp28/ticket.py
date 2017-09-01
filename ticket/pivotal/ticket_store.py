@@ -24,8 +24,7 @@ def save(ticket):
         'description': ticket.body,
         'current_state': ticket.state
     }
-    print('save')
-    print(_put(ticket.id, data))
+    _put(ticket.id, data)
 
 
 def _fetch(id):
