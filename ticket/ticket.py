@@ -1,5 +1,5 @@
 from re import sub
-from ticket.config import BRANCH_PART_SEPARATOR, BRANCH_NAME_PREFIX
+from ticket.config import BRANCH_PART_SEPARATOR, BRANCH_ID_PREFIX
 from ticket.git.branch import Branch
 
 
@@ -44,7 +44,7 @@ class Ticket():
         self.__body += '\n# Pull Requests\n{}'.format(pull_request.url)
 
     def _build_branch_ref(self):
-        return BRANCH_NAME_PREFIX + self.id + BRANCH_PART_SEPARATOR + self._build_sanitized_title()
+        return BRANCH_ID_PREFIX + self.id + BRANCH_PART_SEPARATOR + self._build_sanitized_title()
 
     def _build_sanitized_title(self):
         no_symbols = sub(r'[^\w\s\-_]+', '', self.title)

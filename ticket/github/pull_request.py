@@ -33,18 +33,4 @@ class PullRequest():
 
     @property
     def title(self):
-        return _humanize(self._get_head_branch_without_ticket_id())
-
-    def _get_head_branch_without_ticket_id(self):
-        branch_ref = str(self.head_branch.ref)
-
-        try:
-            branch_prefix_end = branch_ref.index(config.BRANCH_PART_SEPARATOR) + 1
-            return branch_ref[branch_prefix_end:]
-        except ValueError:
-            return branch_ref
-
-
-def _humanize(string):
-    with_spaces = sub(r'[-_]', ' ', string)
-    return with_spaces[0:1].upper() + with_spaces[1:]
+        return self.head_branch.human_readable()
