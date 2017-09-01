@@ -6,8 +6,8 @@ def save(pull_request):
     response = _post(pull_request.repo, dict(
         title=pull_request.title,
         body=pull_request.body,
-        head=pull_request.head_branch.name,
-        base=pull_request.base_branch.name
+        head=pull_request.head_branch.ref,
+        base=pull_request.base_branch.ref
     ))
     pull_request.url = response.get('url')
 

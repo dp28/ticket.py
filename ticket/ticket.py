@@ -34,7 +34,7 @@ class Ticket():
 
     @property
     def branch(self):
-        return Branch(self._build_branch_name())
+        return Branch(self._build_branch_ref())
 
     def start(self):
         if self.state == 'unstarted' or self.state == 'rejected':
@@ -43,7 +43,7 @@ class Ticket():
     def add_pull_request(self, pull_request):
         self.__body += '\n# Pull Requests\n{}'.format(pull_request.url)
 
-    def _build_branch_name(self):
+    def _build_branch_ref(self):
         return BRANCH_NAME_PREFIX + self.id + BRANCH_PART_SEPARATOR + self._build_sanitized_title()
 
     def _build_sanitized_title(self):

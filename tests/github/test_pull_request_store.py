@@ -46,13 +46,13 @@ def test_posts_correct_auth_headers(post):
 def test_posts_correct_body(post):
     pull_request = Mock(PullRequest)
     pull_request.title = 'title'
-    pull_request.head_branch.name = 'head'
-    pull_request.base_branch.name = 'master'
+    pull_request.head_branch.ref = 'head'
+    pull_request.base_branch.ref = 'master'
     pull_request.body = 'a useful body'
 
     pull_request_store.save(pull_request)
 
-    assert post.call_args[1]['data'] == dict(
+    assert post.call_args[1]['json'] == dict(
         title='title',
         body='a useful body',
         head='head',

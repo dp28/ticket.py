@@ -24,47 +24,47 @@ class TicketTest(TestCase):
 
     def test_branch_name_starts_with_prefix_and_id(self):
         ticket = Ticket('1234', 'bla')
-        name_start = ticket.branch.name.split('-')[0]
+        name_start = ticket.branch.ref.split('-')[0]
         self.assertEqual('PT1234', name_start)
 
     def test_branch_name_ends_in_title(self):
         ticket = Ticket('1234', 'bla')
-        name_end = ticket.branch.name.replace('PT1234-', '')
+        name_end = ticket.branch.ref.replace('PT1234-', '')
         self.assertEqual('bla', name_end)
 
     def test_branch_name_replaces_spaces_in_title_with_hyphens(self):
         ticket = Ticket('1234', 'bla bla')
-        name_end = ticket.branch.name.replace('PT1234-', '')
+        name_end = ticket.branch.ref.replace('PT1234-', '')
         self.assertEqual('bla-bla', name_end)
 
     def test_branch_name_replaces_newlines_in_title_with_hyphens(self):
         ticket = Ticket('1234', 'bla\nbla')
-        name_end = ticket.branch.name.replace('PT1234-', '')
+        name_end = ticket.branch.ref.replace('PT1234-', '')
         self.assertEqual('bla-bla', name_end)
 
     def test_branch_name_removes_symbols_in_title(self):
         ticket = Ticket('1234', '[bla]$bla')
-        name_end = ticket.branch.name.replace('PT1234-', '')
+        name_end = ticket.branch.ref.replace('PT1234-', '')
         self.assertEqual('blabla', name_end)
 
     def test_branch_name_keeps_undersores_in_title(self):
         ticket = Ticket('1234', 'bla_bla')
-        name_end = ticket.branch.name.replace('PT1234-', '')
+        name_end = ticket.branch.ref.replace('PT1234-', '')
         self.assertEqual('bla_bla', name_end)
 
     def test_branch_name_keeps_hyphens_in_title(self):
         ticket = Ticket('1234', 'bla-bla')
-        name_end = ticket.branch.name.replace('PT1234-', '')
+        name_end = ticket.branch.ref.replace('PT1234-', '')
         self.assertEqual('bla-bla', name_end)
 
     def test_branch_name_replaces_multiple_spaces_in_title_with_single_hyphens(self):
         ticket = Ticket('1234', 'bla  bla')
-        name_end = ticket.branch.name.replace('PT1234-', '')
+        name_end = ticket.branch.ref.replace('PT1234-', '')
         self.assertEqual('bla-bla', name_end)
 
     def test_branch_name_uses_downcased_title(self):
         ticket = Ticket('1234', 'BlA  bLa')
-        name_end = ticket.branch.name.replace('PT1234-', '')
+        name_end = ticket.branch.ref.replace('PT1234-', '')
         self.assertEqual('bla-bla', name_end)
 
     def test_save_changes_state_to_started_if_was_unstarted(self):

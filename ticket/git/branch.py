@@ -1,12 +1,12 @@
 class Branch():
 
-    def __init__(self, name):
-        self.__name = name
+    def __init__(self, ref):
+        self.__ref = ref
 
     @property
-    def name(self):
-        return self.__name
+    def ref(self):
+        return self.__ref
 
     def __eq__(self, other_branch):
         return (isinstance(other_branch, Branch)
-            and self.name == other_branch.name)
+            and self.ref == other_branch.ref)

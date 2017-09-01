@@ -36,13 +36,13 @@ class PullRequest():
         return _humanize(self._get_head_branch_without_ticket_id())
 
     def _get_head_branch_without_ticket_id(self):
-        branch_name = str(self.head_branch.name)
+        branch_ref = str(self.head_branch.ref)
 
         try:
-            branch_prefix_end = branch_name.index(config.BRANCH_PART_SEPARATOR) + 1
-            return branch_name[branch_prefix_end:]
+            branch_prefix_end = branch_ref.index(config.BRANCH_PART_SEPARATOR) + 1
+            return branch_ref[branch_prefix_end:]
         except ValueError:
-            return branch_name
+            return branch_ref
 
 
 def _humanize(string):

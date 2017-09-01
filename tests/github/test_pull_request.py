@@ -18,7 +18,7 @@ def test_pull_request_has_the_branch_point_as_its_base():
     assert pull.base_branch == Branch(config.BRANCH_POINT)
 
 
-def test_pull_request_has_a_title_taken_from_the_branch_name():
+def test_pull_request_has_a_title_taken_from_the_branch_ref():
     branch = Branch('PT123-test-this-works')
     pull = PullRequest(Mock(branch=branch), Mock())
     assert pull.title == 'Test this works'
