@@ -19,7 +19,7 @@ test_and_notify:
 install:
 	virtualenv -p python3 install
 	install/bin/pip install .
-	echo "alias ticket=$(shell pwd)/install/bin/ticket" >> ~/.bashrc
+	grep "alias ticket=$(shell pwd)/install/bin/ticket" ~/.bashrc || echo "alias ticket=$(shell pwd)/install/bin/ticket" >> ~/.bashrc
 	$(source ~/.bashrc)
 	@echo "\n\nAdded an alias to this installation to ~/.bashrc"
 	@echo "If this doesn't work, please try adding it to your own shell config file"
