@@ -1,4 +1,5 @@
 import requests
+import sys
 from ticket import config
 
 
@@ -16,9 +17,11 @@ def _post(repo, data):
     url = _build_url(repo.name)
     headers = _build_headers()
     response = requests.post(url, json=data, headers=headers)
-    print(response.json())
-    response.raise_for_status()
-    return response.json()
+    json = response.json()
+    if json.get('errors') is None:
+        return json
+    else:
+        sys.exit(json.get('errors'))
 
 
 def _build_url(repo_name):
