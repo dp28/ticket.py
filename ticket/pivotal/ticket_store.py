@@ -1,6 +1,12 @@
 import requests
 from ticket import config
+from ticket.git import branch_store
 from ticket.ticket import Ticket
+
+
+def get_current():
+    ticket_id = branch_store.get_current().ticket_id
+    return get_by_id(ticket_id)
 
 
 def get_by_id(id):

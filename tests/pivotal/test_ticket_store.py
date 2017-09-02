@@ -73,6 +73,17 @@ def test_save_puts_ticket_to_pivotal(put):
     }
 
 
+@patch('ticket.git.branch_store.get_current')
+def test_get_current_uses_ticket_id_from_current_branch(get_branch):
+    real_get_by_id = ticket_store.get_by_id
+    fake_get_by_id = Mock()
+    ticket_store.get_by_id = fake_get_by_id
+    get_branch.return_value = Mock(ticket_id='1224')
+    ticket_store.get_current()
+    ticket_store.get_by_id = real_get_by_id
+    assert fake_get_by_id.call_args[0][0] == '1224'
+
+
 def _story_url(id):
     return 'https://www.pivotaltracker.com/services/v5/projects/{project}/stories/{id}'.format(
         id=id,
